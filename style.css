@@ -1,0 +1,229 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #b6d2ed;
+    color: #333;
+}
+
+body {
+text-align: center; /* Center child elements horizontally */
+background-color: #96c1ec; /* Optional: background color for visibility */
+}
+
+.priority-container {
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    background-color: #e9ecef; /* Different color for the container */
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    min-height: 60px; /* Fixed height for the container */
+    display: flex;
+    align-items: center; /* Center items vertically */
+}
+
+.priority-container.fixed {
+    background-color: #0056b3; /* Darker blue background color for active state */
+}
+
+.priority-list {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    overflow-x: auto;
+    flex-wrap: nowrap; /* Ensure items stay in a single line */
+}
+
+.priority-item {
+    padding: 10px 20px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #007bff;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.buttons {
+    margin-bottom: 20px;
+}
+
+.buttons button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.buttons button:hover {
+    background-color: #0056b3;
+}
+
+.buttons button:active {
+    transform: scale(0.98);
+}
+
+/* Styling for disabled buttons */
+button:disabled, /* For natively disabled buttons */
+button.disabled { /* For buttons with the 'disabled' class */
+background-color: #6c9fd2; /* Light gray color */
+color: #efefef; /* Darker gray text */
+cursor: not-allowed; /* Change cursor to indicate it's disabled */
+pointer-events: none; /* Disable clicking on the button */
+}
+
+.finalize-btn, .reset-btn {
+padding: 10px 20px;
+margin-bottom: 50px;
+border: none;
+border-radius: 5px;
+font-size: 16px;
+cursor: pointer;
+transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Finalize button styles */
+.finalize-btn {
+background-color: #28a745;
+color: #fff;
+}
+
+.finalize-btn:hover {
+background-color: #218838;
+}
+
+.finalize-btn:active {
+transform: scale(0.98);
+}
+
+/* Disabled finalize button */
+.finalize-btn:disabled {
+background-color: #a6dfb1; /* Lighter green */
+color: #d5f2e2; /* Lighter text */
+cursor: not-allowed; /* Indicate it's disabled */
+pointer-events: none; /* Prevent interaction */
+}
+
+/* Reset button styles */
+.reset-btn {
+background-color: #dc3545;
+color: #fff;
+margin-left: 10px;
+}
+
+.reset-btn:hover {
+background-color: #c82333;
+}
+
+.reset-btn:active {
+transform: scale(0.98);
+}
+
+/* Disabled reset button */
+.reset-btn:disabled {
+background-color: #e6a1a8; /* Lighter red */
+color: #f6d4d8; /* Lighter text */
+cursor: not-allowed; /* Indicate it's disabled */
+pointer-events: none; /* Prevent interaction */
+}
+
+
+.form-container {
+display: flex;
+flex-direction: column; /* Stack form elements vertically */
+align-items: flex-start; /* Align items to the left */
+width: 100%; /* Ensure the container takes up the full width */
+max-width: 800px; /* Optional: limit the maximum width of the container */
+margin: 0 auto; /* Center the container horizontally if max-width is set */
+}
+
+/* Style for labels and inputs to be on the same line */
+.form-group-label {
+margin-bottom: 15px;
+display: flex;
+align-items: center; /* Align items to the center vertically */
+width: 100%; /* Full width for the form group */
+}
+
+.form-group-label label {
+font-weight: bold;
+margin-right: 10px; /* Space between label and input field */
+min-width: 200px; /* Set a minimum width for the label */
+text-align: left; /* Ensure label text is aligned to the left */
+}
+
+.form-group-label input[type="number"] {
+padding: 8px;
+border: 1px solid #ced4da;
+border-radius: 5px;
+width: 100px; /* Width for number fields */
+box-sizing: border-box;
+}
+
+/* Style for radio buttons to align them properly */
+.form-group-radio {
+margin-bottom: 15px;
+}
+
+.form-group-radio label {
+font-weight: bold;
+margin-bottom: 5px; /* Space between label and radio group */
+display: block; /* Ensure the label is on its own line */
+text-align: left; /* Align label text to the left */
+}
+
+.radio-group {
+display: flex;
+flex-direction: column; /* Stack radio buttons vertically */
+}
+
+.radio-group label {
+font-weight: normal;
+margin-bottom: 5px; /* Space between radio button options */
+display: flex; /* Ensure label text and radio button are aligned horizontally */
+align-items: center; /* Align radio button with label text */
+}
+
+.radio-group input[type="radio"] {
+margin-right: 5px; /* Space between radio button and label text */
+}
+
+#chartInfo {
+text-align: left;
+margin-bottom: 20px;
+color: #333; /* Default text color */
+}
+
+#chartInfo p {
+font-size: 30px; /* Increase font size */
+font-weight: bold; /* Make text bold */
+color: #007bff; /* Change text color */
+margin: 5px 0; /* Add some space between lines */
+}
+
+.wishes-group {
+display: flex;
+flex-direction: column; /* Stack label and input vertically */
+align-items: center; /* Center align children horizontally */
+width: 100%; /* Full width to ensure centering works */
+}
+
+/* Style for the specific "Number of wishes" label */
+#wishesLabel {
+font-size: 20px; /* Increase the font size */
+font-weight: bold; /* Make the text bold */
+color: #007bff; /* Make the text color prominent */
+margin-bottom: 10px; /* Space between label and input field */
+text-align: center; /* Center align the text */
+width: 100%; /* Make the label span the full width of its container */
+}
+
+/* Style for the number input within the specific group */
+.wishes-group input[type="number"] {
+text-align: center; /* Center align the input text */
+}
