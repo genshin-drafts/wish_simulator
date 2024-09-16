@@ -1,16 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Priority Selection</title>
+    <title>Wish Simulator</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
-    
+
     <script src="simulator.js" defer></script>
     <script src="gui.js" defer></script>
 </head>
+
 <body>
+    <div id="versionContainer">
+        <span id="versionText">WishSimualtor v1.1</span>
+    </div>
+
+    <!-- Changelog Modal -->
+    <div id="changelogModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeVersion">&times;</span>
+            <h1>Changelog</h1>
+            <h2>Versão 1.1</h2>
+            <div class="description-text">
+                <p>Lista de mudanças:
+                </p>
+                <ul class="version-list">
+                    <li>Update de UI.</li>
+                    <li>Limite de prioridade aumentado: C6 -> C15. R5 -> R12. Esse aumento foi para ser possível simular mais de um banner futuro (Ex: agora é possível simular C6R5 de um banner na próxima versao, e C2R1 de um banner daqui há algumas versoes. Basta continuar adicionando C e R a lista de prioridades). </li>
+                    <li>Adicionada "opções avançadas"</li>
+                    <li><b>Novo sistema de salvar 50/50 perdidos (Capturing Radiance) adicionado às simulações.</b> Opção de desativar o novo sistema está presente nas 'Opções avançadas'. Inicialmente o sistema está ativo nas simulações.</li>
+                    <li>Opção de mostrar média de desejos restantes nas simulações adicionada às "opções avançadas", e desativada por padrão.</li>
+                    <li>Caso o gráfico gerado tenha muitas colunas, as colunas iniciais com 100% de chance podem não ser exibidas, para melhorar a legibilidade.</li>
+                </ul>
+            </div>
+            <h2>Versão 1.0</h2>
+            <div class="description-text">
+                <p>Simula desejos na ordem de prioridade definida (até C6R5). Os resultados são gerados a partir de
+                    10.000 simulações.
+                    <br>Informações de entrada:
+                </p>
+                <ul class="version-list">
+                    <li>Pity atual do personagem</li>
+                    <li>Garantido ou 50/50 do personagem</li>
+                    <li>Pity atual das armas</li>
+                    <li>Garantido ou 75/25 da arma</li>
+                    <li>Fate Points do banner de armas</li>
+                    <li>Numero de desejos para simular</li>
+                </ul>
+                <p>Informações de saída:</p>
+                <ul class="version-list">
+                    <li>Gráfico com as chances de atingir a prioridade selecionada</li>
+                    <li>Chance final de atingir a prioridade</li>
+                    <li>Número final médio de desejos</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h1>Estado atual dos banners</h1>
+    <div class="expandable-container">
+        <div class="expandable-header" onclick="toggleExpandable()">
+            <button class="toggle-btn">+ Adicionar informações sobre seus tiros passados</button>
+        </div>
+        <div class="expandable-content open" id="expandableContent">
+            <div class="form-group-label">
+                <label for="charPity">Tiros dados desde o último personagem 5*:</label>
+                <input type="number" id="charPity" value="0" min="0" max="89" />
+            </div>
+
+            <div class="form-group-radio">
+                <label>Você está no garantido? Ou último personagem foi um personagem do banner limitado?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="charGuaranteed" value="yes" /> Estou no garantido do banner de
+                        personagem</label>
+                    <label><input type="radio" name="charGuaranteed" value="no" checked /> Estou no 50/50</label>
+                </div>
+            </div>
+
+            <div class="form-group-label">
+                <label for="weapPity">Tiros dados desde a última arma 5*:</label>
+                <input type="number" id="weapPity" value="0" min="0" max="79" />
+            </div>
+
+            <div class="form-group-radio">
+                <label>Você está no garantido? Ou a última arma foi uma arma do banner limitado?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="weapGuaranteed" value="yes" /> Estou no garantido do banner de
+                        armas</label>
+                    <label><input type="radio" name="weapGuaranteed" value="no" checked /> Estou no 75/25</label>
+                </div>
+            </div>
+
+            <div class="form-group-radio">
+                <label>No banner de armas, como estão seus Fate Points? <br>(Fate point é o número de vezes que você
+                    pegou uma arma diferente da selecionada. Ele reseta para 0 no início de todo novo banner)</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="weapFate" value="no" checked /> 0 </label>
+                    <label><input type="radio" name="weapFate" value="yes" />1 - A última arma 5* que tirei no banner de
+                        armas **atual** foi diferente da selecionada.</label>
+                </div>
+            </div>
+
+            <div class="form-group-radio">
+                <label>Sobre seus 50/50 do banner de personagens desde a 5.0:<br>(Só considere seus 50/50 desde o início
+                    da 5.0)</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="capRad" value=0 checked /> Ganhei meu último 50/50, ou nao ganhei
+                        um personagem no 50/50 desde a 5.0.</label>
+                    <label><input type="radio" name="capRad" value=1 />Perdi meu último 50/50. Ganhei meu penúltimo
+                        50/50 ou só tive um 50/50 desde a 5.0.</label>
+                    <label><input type="radio" name="capRad" value=2 />Perdi meu último e penúltimo 50/50. Ganhei meu
+                        antepenúltimo 50/50 ou só tive dois 50/50 desde a 5.0.</label>
+                    <label><input type="radio" name="capRad" value=3 />Perdi meu último, penúltimo, e antepenúltimo
+                        50/50. Ganhei o 50/50 antes disso ou só tive três 50/50 desde a 5.0.</label>
+                </div>
+            </div>
+
+            <button class="green-btn" id="saveBtn" onclick="toggleExpandable()">Guardar dados</button>
+        </div>
+    </div>
+
     <h1>Prioridade</h1>
 
     <div class="priority-container">
@@ -20,70 +131,62 @@
     <div class="buttons">
         <button id="C0">C0</button>
         <button id="R1">R1</button>
-    </div>
-    <p><i>Cx (C0, C1, C2, C3...) significa o personagem, e Rx (R1, R2, R3...) significa sua arma assinatura.</i></p>
-    <p><i>Ex: se seu objetivo for o personagem C2R1, e sua prioridade for pegar uma cópia, depois a arma, e depois as constelacoes, você adicionaria: C0 -> R1 -> C1 -> C2 -> Definir prioridade</i></p>
-    <div class="actions">
-        <button class="finalize-btn" id="finalizeBtn">Definir prioridade</button>
         <button class="reset-btn" id="resetBtn">Resetar prioridade</button>
     </div>
-    <h1>Estado atual dos banners</h1>
-    <div class="form-group-label">
-        <label for="charPity">Tiros dados desde o último personagem 5*:</label>
-        <input type="number" id="charPity" value="0" min="0" max="89"/>
-    </div>
+    <p><i>Cx (C0, C1, C2, C3...) significa o personagem, e Rx (R1, R2, R3...) significa sua arma assinatura.</i></p>
+    <p><i>Ex: se seu objetivo for o personagem C2R1, e sua prioridade for pegar uma cópia, depois a arma, e depois as
+            constelacoes, você adicionaria: C0 -> R1 -> C1 -> C2 -> Definir prioridade</i></p>
 
-    <div class="form-group-radio">
-        <label>Você está no garantido? Ou último personagem foi um personagem do banner limitado?</label>
-        <div class="radio-group">
-            <label><input type="radio" name="charGuaranteed" value="yes" /> Estou no garantido do banner de personagem</label>
-            <label><input type="radio" name="charGuaranteed" value="no" checked /> Estou no 50/50</label>
-        </div>
-    </div>
-
-    <div class="form-group-label">
-        <label for="weapPity">Tiros dados desde a última arma 5*:</label>
-        <input type="number" id="weapPity"  value="0" min="0" max="79"/>
-    </div>
-
-    <div class="form-group-radio">
-        <label>Você está no garantido? Ou a última arma foi uma arma do banner limitado?</label>
-        <div class="radio-group">
-            <label><input type="radio" name="weapGuaranteed" value="yes" /> Estou no garantido do banner de armas</label>
-            <label><input type="radio" name="weapGuaranteed" value="no" checked /> Estou no 75/25</label>
-        </div>
-    </div>
-
-    <div class="form-group-radio">
-        <label>No banner de armas, como estao seus Fate Points? <br>(Fate point é o número de vezes que você pegou uma arma diferente da selecionada. Ele reseta para 0 no início de todo novo banner.)</label>
-        <div class="radio-group">
-            <label><input type="radio" name="weapFate" value="no" checked/> 0 </label>
-            <label><input type="radio" name="weapFate" value="yes" /><p>1 - A última arma 5* que tirei no banner de armas <strong> atual </strong> foi diferente da selecionada.</p></label>
-        </div>
-    </div>
 
     <h1>Simulações</h1>
     <div class="form-group-label wishes-group">
         <label for="wishesInput" id="wishesLabel">Número de tiros (Destinos Entrelaçados)</label>
-        <input type="number" id="wishesInput" value="0"/>
+        <input type="number" id="wishesInput" value="0" />
     </div>
 
     <div class="actions">
-        <button class="finalize-btn" id="genBtn" onclick="generateChart()" disabled>Gerar resultados</button>
+        <button class="finalize-btn" id="genBtn">Gerar resultados</button>
+        <button class="finalize-btn" id="advOptionsBtn">Opções avançadas</button>
     </div>
 
-    <!-- <script src="script.js"></script> -->
-
-    <div id="chartInfo" style="text-align: left; margin-bottom: 20px;">
-        <p id="successRate"></p>
-        <p id="avgWishesLeft"></p>
+    <div id="advOptionsModal" class="modal">
+        <div class="modal-content advanced-options">
+            <span class="close" id="closeAdvOption">&times;</span>
+            <h2>Opções avançadas</h2>
+            <form id="advancedOptionsForm">
+                <!-- Example options -->
+                <div>
+                    <input type="checkbox" id="checkBoxCapRadiance" name="checkBoxCapRadiance" checked>
+                    <label for="checkBoxCapRadiance">BETA: usar 'Capturing Radiance' nas simulações (teoria atual:
+                        <a
+                            href="https://www.reddit.com/r/Genshin_Impact/comments/1f5mfqf/the_new_cn_capturing_radiance_theory/">acesse
+                            aqui</a>)</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="checkBoxAvgLeft" name="checkBoxAvgLeft">
+                    <label for="checkBoxAvgLeft">Mostrar média de desejos restantes</label>
+                </div>
+                <!-- Add more advanced options as needed -->
+            </form>
+        </div>
     </div>
 
-    <canvas id="myBarChart" style="display:none;"></canvas>
+    <!-- Modal structure -->
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeResultModal">&times;</span>
+            <div id="chartInfo" style="text-align: left; margin-bottom: 20px;">
+                <p id="successRate"></p>
+                <p id="avgWishesLeft"></p>
+            </div>
+            <canvas id="myBarChart" style="display:none;"></canvas>
+        </div>
+    </div>
 
     <!-- <script type="module">
         
     </script> -->
-    
+
 </body>
+
 </html>

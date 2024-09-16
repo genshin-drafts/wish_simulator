@@ -19,7 +19,7 @@ function getRandomInt(max) {
 function calc(wishes, priority, goal_char = 1, goal_weap = 0, pity_char = 0, garanteed_char_p = false, pity_weap = 0, garanteed_weap = false, radiance_garanteed = false, lost_sequence = -1) {
     let banner_char = 0;
     let banner_weap = 0;
-    let lost_banner_char = 0;
+    let lost_banner_char = lost_sequence;
     // let pity_char = 0;
     // let pity_weap = 0;
     let guaranteed_char = garanteed_char_p;
@@ -28,7 +28,7 @@ function calc(wishes, priority, goal_char = 1, goal_weap = 0, pity_char = 0, gar
 
     let spent_wishes = 0;
 
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 30; i++) {
         if (priority[i] === 0) {
             while (spent_wishes < wishes && banner_char < goal_char) {
                 spent_wishes++;
@@ -50,6 +50,7 @@ function calc(wishes, priority, goal_char = 1, goal_weap = 0, pity_char = 0, gar
                     }
 
                     let new_system = lost_sequence === -1 ? 0 : chance_new_system[lost_banner_char];
+                    // alert(new_system);
                     // Nao é o garantido, mas Ganhou o 50/50
                     if (getRandomInt(1000) <= 500 || getRandomInt(1000) <= new_system) {
                         guaranteed_char = false;
@@ -115,7 +116,7 @@ function cumulativeFromEnd(arr) {
     return cumulativeArr;
 }
 
-function simulate(wishes, prio, pity_char, garanteed_char, pity_weap, garanteed_weap, garanteed_fate_weap, simulations = 100000) {
+function simulate(wishes, prio, pity_char, garanteed_char, pity_weap, garanteed_weap, garanteed_fate_weap, capture_radiance, simulations = 100000) {
     let success = 0;
     let left = 0;
     let sim_weight = 100.0 / simulations;
@@ -131,11 +132,11 @@ function simulate(wishes, prio, pity_char, garanteed_char, pity_weap, garanteed_
         }
     }
 
-    let arr = new Array(13).fill(0);
+    let arr = new Array(prio.length + 1).fill(0);
     let weap_avg = 0;
 
     for (let i = 0; i < simulations; i++) {
-        let { banner_char, banner_weap, spent_wishes } = calc(wishes, prio, goal_char, goal_weap, pity_char, garanteed_char, pity_weap, garanteed_weap, garanteed_fate_weap);
+        let { banner_char, banner_weap, spent_wishes } = calc(wishes, prio, goal_char, goal_weap, pity_char, garanteed_char, pity_weap, garanteed_weap, garanteed_fate_weap, capture_radiance);
 
         if (banner_char === goal_char && banner_weap === goal_weap) {
             success++;
@@ -154,12 +155,12 @@ function simulate(wishes, prio, pity_char, garanteed_char, pity_weap, garanteed_
 }
 
 function getLabels(priority) {
-    let labels = new Array(13).fill('');
+    let labels = new Array(priority.length + 1).fill('');
     let char_label = '-';
     let char_num = 0;
     let weap_label = '';
     let weap_num = 0;
-    for (let i = 0; i < 13; i++) {
+    for (let i = 0; i < priority.length + 1; i++) {
         if (priority[i] === 0) {
             char_num += 1;
             char_label = "C" + (char_num - 1).toString();

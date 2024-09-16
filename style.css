@@ -1,29 +1,24 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
-    background-color: #b6d2ed;
-    color: #333;
-}
-
-body {
-text-align: center; /* Center child elements horizontally */
-background-color: #96c1ec; /* Optional: background color for visibility */
+    background-color: #202442;
+    color: #A0AEC0;
+    text-align: center;
 }
 
 .priority-container {
-    border: 2px solid #007bff;
+    border: 2px solid #FFFFFF;
     border-radius: 5px;
-    background-color: #e9ecef; /* Different color for the container */
+    background-color: #2D325A;
+    /* Different color for the container */
     padding: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    min-height: 60px; /* Fixed height for the container */
+    min-height: 60px;
+    /* Fixed height for the container */
     display: flex;
-    align-items: center; /* Center items vertically */
-}
-
-.priority-container.fixed {
-    background-color: #0056b3; /* Darker blue background color for active state */
+    align-items: center;
+    /* Center items vertically */
 }
 
 .priority-list {
@@ -31,7 +26,8 @@ background-color: #96c1ec; /* Optional: background color for visibility */
     gap: 10px;
     margin-bottom: 10px;
     overflow-x: auto;
-    flex-wrap: nowrap; /* Ensure items stay in a single line */
+    flex-wrap: nowrap;
+    /* Ensure items stay in a single line */
 }
 
 .priority-item {
@@ -39,13 +35,14 @@ background-color: #96c1ec; /* Optional: background color for visibility */
     border: 1px solid #007bff;
     border-radius: 5px;
     background-color: #ffffff;
-    color: #007bff;
+    color: #2D325A;
+    /* font-weight: bold; */
     font-size: 16px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .buttons {
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 
 .buttons button {
@@ -53,7 +50,8 @@ background-color: #96c1ec; /* Optional: background color for visibility */
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: #2D325A;
+    border: 2px solid #ddd;
     color: #fff;
     font-size: 16px;
     cursor: pointer;
@@ -61,7 +59,7 @@ background-color: #96c1ec; /* Optional: background color for visibility */
 }
 
 .buttons button:hover {
-    background-color: #0056b3;
+    background-color: #4D71D9;
 }
 
 .buttons button:active {
@@ -69,161 +67,450 @@ background-color: #96c1ec; /* Optional: background color for visibility */
 }
 
 /* Styling for disabled buttons */
-button:disabled, /* For natively disabled buttons */
-button.disabled { /* For buttons with the 'disabled' class */
-background-color: #6c9fd2; /* Light gray color */
-color: #efefef; /* Darker gray text */
-cursor: not-allowed; /* Change cursor to indicate it's disabled */
-pointer-events: none; /* Disable clicking on the button */
+button:disabled,
+/* For natively disabled buttons */
+button.disabled {
+    /* For buttons with the 'disabled' class */
+    background-color: #3e4368;
+    /* Light gray color */
+    color: #979797;
+    border: 2px solid #979797;
+    /* Darker gray text */
+    cursor: not-allowed;
+    /* Change cursor to indicate it's disabled */
+    pointer-events: none;
+    /* Disable clicking on the button */
 }
 
-.finalize-btn, .reset-btn {
-padding: 10px 20px;
-margin-bottom: 50px;
-border: none;
-border-radius: 5px;
-font-size: 16px;
-cursor: pointer;
-transition: background-color 0.3s, transform 0.2s;
-}
-
-/* Finalize button styles */
-.finalize-btn {
-background-color: #28a745;
-color: #fff;
-}
-
-.finalize-btn:hover {
-background-color: #218838;
-}
-
-.finalize-btn:active {
-transform: scale(0.98);
-}
-
-/* Disabled finalize button */
-.finalize-btn:disabled {
-background-color: #a6dfb1; /* Lighter green */
-color: #d5f2e2; /* Lighter text */
-cursor: not-allowed; /* Indicate it's disabled */
-pointer-events: none; /* Prevent interaction */
+.finalize-btn,
+.green-btn {
+    padding: 10px 20px;
+    margin-bottom: 50px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    background-color: #202442;
+    color: #ddd;
+    border: 2px solid #ddd; /* Adjust border color and width as needed */
 }
 
 /* Reset button styles */
-.reset-btn {
-background-color: #dc3545;
-color: #fff;
-margin-left: 10px;
+.buttons .reset-btn {
+    background-color: #202442;
+    font-weight: bold;
+    color: #ddd;
+    margin-left: 10px;
 }
 
-.reset-btn:hover {
-background-color: #c82333;
+.buttons .reset-btn:hover {
+    background-color: #171b35;
 }
 
-.reset-btn:active {
-transform: scale(0.98);
+.buttons .reset-btn:active {
+    transform: scale(0.98);
 }
 
-/* Disabled reset button */
-.reset-btn:disabled {
-background-color: #e6a1a8; /* Lighter red */
-color: #f6d4d8; /* Lighter text */
-cursor: not-allowed; /* Indicate it's disabled */
-pointer-events: none; /* Prevent interaction */
+.green-btn {
+    margin-bottom: 0px;
 }
 
+.finalize-btn:hover,
+.green-btn:hover {
+    border: 2px solid #6c72a4; /* Adjust border color and width as needed */
+    background-color: #171b35;
+}
+
+.finalize-btn:active,
+.green-btn:active {
+    transform: scale(0.98);
+}
 
 .form-container {
-display: flex;
-flex-direction: column; /* Stack form elements vertically */
-align-items: flex-start; /* Align items to the left */
-width: 100%; /* Ensure the container takes up the full width */
-max-width: 800px; /* Optional: limit the maximum width of the container */
-margin: 0 auto; /* Center the container horizontally if max-width is set */
+    display: flex;
+    flex-direction: column;
+    /* Stack form elements vertically */
+    align-items: flex-start;
+    /* Align items to the left */
+    width: 100%;
+    /* Ensure the container takes up the full width */
+    max-width: 800px;
+    /* Optional: limit the maximum width of the container */
+    margin: 0 auto;
+    /* Center the container horizontally if max-width is set */
 }
 
 /* Style for labels and inputs to be on the same line */
 .form-group-label {
-margin-bottom: 15px;
-display: flex;
-align-items: center; /* Align items to the center vertically */
-width: 100%; /* Full width for the form group */
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    /* Align items to the center vertically */
+    width: 100%;
+    /* Full width for the form group */
 }
 
 .form-group-label label {
-font-weight: bold;
-margin-right: 10px; /* Space between label and input field */
-min-width: 200px; /* Set a minimum width for the label */
-text-align: left; /* Ensure label text is aligned to the left */
+    font-weight: bold;
+    margin-right: 10px;
+    /* Space between label and input field */
+    min-width: 200px;
+    /* Set a minimum width for the label */
+    text-align: left;
+    /* Ensure label text is aligned to the left */
 }
 
 .form-group-label input[type="number"] {
-padding: 8px;
-border: 1px solid #ced4da;
-border-radius: 5px;
-width: 100px; /* Width for number fields */
-box-sizing: border-box;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    width: 100px;
+    /* Width for number fields */
+    box-sizing: border-box;
 }
 
 /* Style for radio buttons to align them properly */
 .form-group-radio {
-margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .form-group-radio label {
-font-weight: bold;
-margin-bottom: 5px; /* Space between label and radio group */
-display: block; /* Ensure the label is on its own line */
-text-align: left; /* Align label text to the left */
+    font-weight: bold;
+    margin-bottom: 5px;
+    /* Space between label and radio group */
+    display: block;
+    /* Ensure the label is on its own line */
+    text-align: left;
+    /* Align label text to the left */
 }
 
 .radio-group {
-display: flex;
-flex-direction: column; /* Stack radio buttons vertically */
+    display: flex;
+    flex-direction: column;
+    /* Stack radio buttons vertically */
 }
 
 .radio-group label {
-font-weight: normal;
-margin-bottom: 5px; /* Space between radio button options */
-display: flex; /* Ensure label text and radio button are aligned horizontally */
-align-items: center; /* Align radio button with label text */
+    font-weight: normal;
+    margin-bottom: 5px;
+    /* Space between radio button options */
+    display: flex;
+    /* Ensure label text and radio button are aligned horizontally */
+    align-items: center;
+    /* Align radio button with label text */
 }
 
 .radio-group input[type="radio"] {
-margin-right: 5px; /* Space between radio button and label text */
+    margin-right: 5px;
+    /* Space between radio button and label text */
 }
 
 #chartInfo {
-text-align: left;
-margin-bottom: 20px;
-color: #333; /* Default text color */
+    text-align: left;
+    margin-bottom: 20px;
+    color: #333;
+    /* Default text color */
 }
 
 #chartInfo p {
-font-size: 30px; /* Increase font size */
-font-weight: bold; /* Make text bold */
-color: #007bff; /* Change text color */
-margin: 5px 0; /* Add some space between lines */
+    font-size: 30px;
+    /* Increase font size */
+    font-weight: bold;
+    /* Make text bold */
+    color: #383e6d;
+    /* Change text color */
+    margin: 5px 0;
+    /* Add some space between lines */
 }
 
 .wishes-group {
-display: flex;
-flex-direction: column; /* Stack label and input vertically */
-align-items: center; /* Center align children horizontally */
-width: 100%; /* Full width to ensure centering works */
+    display: flex;
+    flex-direction: column;
+    /* Stack label and input vertically */
+    align-items: center;
+    /* Center align children horizontally */
+    width: 100%;
+    /* Full width to ensure centering works */
 }
 
 /* Style for the specific "Number of wishes" label */
 #wishesLabel {
-font-size: 20px; /* Increase the font size */
-font-weight: bold; /* Make the text bold */
-color: #007bff; /* Make the text color prominent */
-margin-bottom: 10px; /* Space between label and input field */
-text-align: center; /* Center align the text */
-width: 100%; /* Make the label span the full width of its container */
+    font-size: 20px;
+    /* Increase the font size */
+    font-weight: bold;
+    /* Make the text bold */
+    /* color: #007bff; */
+    /* Make the text color prominent */
+    margin-bottom: 10px;
+    /* Space between label and input field */
+    text-align: center;
+    /* Center align the text */
+    width: 100%;
+    /* Make the label span the full width of its container */
 }
 
 /* Style for the number input within the specific group */
 .wishes-group input[type="number"] {
-text-align: center; /* Center align the input text */
+    text-align: center;
+    /* Center align the input text */
+}
+
+/* Modal container */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Darkened background */
+    backdrop-filter: blur(5px);
+    /* Optional: adds a subtle blur to the background */
+}
+
+/* Modal content box */
+.modal-content {
+    background-color: #ffffff;
+    margin: 5vh auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80vw;
+    height: 80vh;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* max-width: 600px; */
+    overflow: auto;
+    font-family: Arial, sans-serif;
+    /* Keep font consistent */
+    color: #2D325A;
+    /* Same text color as body */
+    animation: fadeIn 0.3s;
+}
+
+/* Close button in modal */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #007bff;
+    /* Match your primary blue color */
+}
+
+/* Modal header and buttons */
+.modal h2 {
+    font-size: 24px;
+    color: #2D325A;
+    /* Same blue as buttons */
+    border-bottom: 2px solid #2D325A;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Modal buttons */
+.modal-content button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: #0056b3;
+}
+
+.modal-content button:active {
+    transform: scale(0.98);
+}
+
+/* Align forms and inputs inside modal */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content form label {
+    font-weight: bold;
+    color: #333;
+    /* Same as main body */
+}
+
+.modal-content form input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#versionText {
+    font-size: 14px;
+    color: #007bff; /* Link-like color (blue) */
+    text-decoration: underline; /* Add underline to mimic a link */
+    cursor: pointer; /* Change cursor to pointer */
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+/* Add hover effect for interactivity */
+#versionText:hover {
+    color: #0056b3; /* Darken color on hover */
+    text-decoration: none; /* Remove underline on hover */
+}
+
+#versionModal .modal-content {
+    background-color: white;
+    margin: 5vh auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50vw;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+/* Style for the version description heading and paragraph */
+#versionModal h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2D325A;
+    margin-bottom: 10px;
+}
+
+#versionModal p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    color: #2D325A;
+}
+
+/* Styling for the list */
+.version-list {
+    list-style-type: disc;
+    /* Ensure the bullets are visible */
+    list-style-position: inside;
+    /* Bullets are inside the padding box */
+    padding-left: 20px;
+    /* Add left padding for better alignment */
+    margin-bottom: 20px;
+    text-align: left;
+    /* Ensure the text aligns to the left */
+}
+
+.version-list li {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+/* Optionally: You can change the bullet color */
+.version-list li::marker {
+    color: #2D325A;
+    /* Bullet color */
+    font-weight: bold;
+    /* Bullet weight */
+}
+
+.description-text {
+    text-align: left;
+    /* Align the normal text to the left */
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #2D325A;
+}
+
+/* Ensure each checkbox is placed below the other and labels are aligned to the left */
+#advancedOptionsForm div {
+    display: flex;
+    align-items: center;
+    /* Align checkboxes and labels vertically */
+    margin-bottom: 10px;
+    /* Space between each checkbox/label pair */
+}
+
+/* Align labels to the left */
+#advancedOptionsForm label {
+    text-align: left;
+    width: 100%;
+    /* Take up full width */
+}
+
+/* Adjust checkbox positioning */
+#advancedOptionsForm input[type="checkbox"] {
+    margin-right: 10px;
+    /* Space between checkbox and label */
+}
+
+/* Ensure canvas or graphic scales with the modal */
+#graphic {
+    width: 100%;
+    /* Full width of modal */
+    height: 100%;
+    /* Full height of modal */
+}
+
+/* Expandable container */
+.expandable-container {
+    border: 2px solid #FFFFFF;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #2D325A;
+}
+
+.expandable-header {
+    cursor: pointer;
+    background-color: #2D325A;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: left;
+}
+
+.expandable-header:hover {
+    background-color: #4D71D9;
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.expandable-content {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease-out;
+    color: #FFFFFF;
+}
+
+.expandable-content.open {
+    max-height: 800px;
+    /* Set a max height large enough for content */
+    transition: max-height 0.3s ease-in;
+}
+
+.expandable-content .form-group-label,
+.expandable-content .form-group-radio {
+    margin: 15px 0;
+}
+
+/* Adding smooth transitions for all inputs */
+input,
+label {
+    transition: all 0.2s ease;
 }
