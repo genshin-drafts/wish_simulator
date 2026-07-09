@@ -10,7 +10,7 @@ const chance_pity_weap = [
     77, 147, 217, 287, 357, 427, 497, 567, 637, 707, 777, 847, 917, 987, 1000, 1000, 1000, 1000
 ];
 
-const chance_new_system = [0, 50, 500, 1000];
+const chance_new_system = [0, 0, 500, 1000];
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max) + 1;
