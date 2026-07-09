@@ -121,13 +121,12 @@ function savePriority() {
     //     container.classList.add('fixed'); // Remove disabled visual feedback
     // });
 
-    /*
-    document.querySelectorAll('.buttons button:not(#resetBtn)').forEach(button => {
-        button.innerText = button.id; // Set button text back to initial
-        button.disabled = true;
-        button.classList.add('disabled'); // Remove disabled visual feedback
-    });
-    */
+    
+    //document.querySelectorAll('.buttons button:not(#resetBtn)').forEach(button => {
+    //    button.innerText = button.id; // Set button text back to initial
+    //    button.disabled = true;
+    //    button.classList.add('disabled'); // Remove disabled visual feedback
+    //});
 
     items.forEach(item => {
         const text = item.innerText;
